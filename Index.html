@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me Amas?</title>
+    <style>
+        body {
+            background-color: #f0e4d7;
+            font-family: 'Cursive', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px;
+            max-width: 350px;
+            width: 90%;
+            margin: 10px;
+            position: relative;
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .card button {
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .card button:hover {
+            background-color: #ff8787;
+        }
+
+        .carta {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+            white-space: pre-wrap;
+            line-height: 1.5;
+            word-wrap: break-word;
+            overflow: auto;
+        }
+
+        .video-container {
+            display: none;
+            margin-top: 10px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .boton-si {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #76c893;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .boton-si:hover {
+            background-color: #98d7a5;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="pregunta">
+        <img src="huevo.png" alt="Cabeza de Huevo">
+        <p>¿Me amas?</p>
+        <button onclick="mostrarRespuesta(true)">Sí</button>
+        <button onclick="mostrarRespuesta(false)">No</button>
+    </div>
+
+    <div class="card" id="respuesta" style="display: none;">
+        <div class="carta" id="mensaje"></div>
+        <div class="video-container" id="video-container">
+            <video id="video" autoplay loop></video>
+        </div>
+        <button class="boton-si" id="boton-si" style="display: none;" onclick="mostrarRespuesta(true)">Sí</button>
+    </div>
+
+    <script>
+        function mostrarRespuesta(amor) {
+            const pregunta = document.getElementById('pregunta');
+            const respuesta = document.getElementById('respuesta');
+            const mensaje = document.getElementById('mensaje');
+            const video = document.getElementById('video');
+            const videoContainer = document.getElementById('video-container');
+            const botonSi = document.getElementById('boton-si');
+
+            pregunta.style.display = 'none';
+            respuesta.style.display = 'block';
+
+            if (amor) {
+                mensaje.innerText = "Sabía que dirías que sí, porque eres mi todo. Te amo y siempre haré lo que pueda para hacerte feliz, aunque me toque ingeniármelas. Eres mi musa, el encanto que me domina, mi alegría, mi amada, mi poesía.\n\nEres quien me saca de mis casillas, pero también quien más amo y pienso cada día. Eres la tentación y la dulzura que a mi cuerpo le fascina. Mi dopamina, la razón de mi sonrisa y el motivo de mi lucha.\n\nSiempre serás mi luna, la más hermosa mujer que ilumina mi vida.";
+                video.src = "respuesta_si.mp4";
+                botonSi.style.display = 'none';
+            } else {
+                mensaje.innerText = "¿De verdad no me amas? ¡No puedes estar hablando en serio! Sabes que me amas, aunque a veces te haga enojar o te saque de quicio. No importa cuántas veces digas que no, al final siempre terminas conmigo, porque estamos hechos el uno para el otro.";
+                video.src = "respuesta_no.mp4";
+                botonSi.style.display = 'block';
+            }
+
+            videoContainer.style.display = 'block';
+            video.play();
+        }
+    </script>
+</body>
+</html>
